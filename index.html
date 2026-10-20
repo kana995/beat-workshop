@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>부산교육 AI 튜터 BeAT 실습실</title>
+  <style>
+    /* Global Styles & Variables */
+    :root {
+      --primary-blue: #0066cc;
+      --primary-light: #e6f0fa;
+      --accent-blue: #00a3e0;
+      --dark-navy: #002b49;
+      --bg-gray: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --success-green: #10b981;
+      --error-red: #ef4444;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-gray);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header & Banner */
+    header {
+      background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-blue) 100%);
+      color: white;
+      padding: 25px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .promise-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .promise-item {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .promise-item strong {
+      display: block;
+      color: #7dd3fc;
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      scrollbar-width: thin;
+    }
+
+    .nav-tab {
+      background: #e2e8f0;
+      color: var(--text-muted);
+      border: none;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tab:hover {
+      background: #cbd5e1;
+      color: var(--text-main);
+    }
+
+    .nav-tab.active {
+      background: var(--primary-blue);
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Card Layout */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 1.3rem;
+      color: var(--dark-navy);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 8px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-control, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease;
+      background-color: #fff;
+    }
+
+    .form-control:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Prompt Display & Copy Box */
+    .prompt-box {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      position: relative;
+      margin-top: 15px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #0f172a;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #0052a3;
+    }
+
+    .btn-secondary {
+      background: #64748b;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
+    .btn-copy {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Quiz Component */
+    .quiz-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      gap: 12px;
+    }
+
+    .quiz-opt-btn {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quiz-opt-btn.selected-o {
+      background: #dcfce7;
+      border-color: var(--success-green);
+      color: #166534;
+    }
+
+    .quiz-opt-btn.selected-x {
+      background: #fee2e2;
+      border-color: var(--error-red);
+      color: #991b1b;
+    }
+
+    .quiz-explanation {
+      margin-top: 10px;
+      padding: 10px;
+      background: var(--primary-light);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      color: var(--dark-navy);
+      display: none;
+    }
+
+    /* Sub-tabs for Subject Prompts */
+    .sub-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .sub-tab {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sub-tab.active {
+      background: var(--dark-navy);
+      color: white;
+      border-color: var(--dark-navy);
+    }
+
+    /* Modal Notice */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e293b;
+      color: white;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      display: none;
+      z-index: 1000;
+      font-size: 0.9rem;
+    }
+
+    /* Canvas Preview Box */
+    .canvas-container {
+      text-align: center;
+      margin-top: 20px;
+      background: #e2e8f0;
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: var(--shadow-md);
+      background: white;
+    }
+
+    .info-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Section -->
+    <header>
+      <h1>부산교육 AI 튜터 BeAT 실습실</h1>
+      <p>BeAT와 함께하는 안전하고 유익한 올바른 AI 활용 실습</p>
+      
+      <div class="promise-banner">
+        <div class="promise-item">
+          <strong>확인</strong>
+          답을 그대로 믿지 않고 출처 확인하기
+        </div>
+        <div class="promise-item">
+          <strong>정직</strong>
+          AI 활용 사실을 밝히고 스스로 작성
+        </div>
+        <div class="promise-item">
+          <strong>보호</strong>
+          이름, 학교, 연락처 개인정보 절대 금지
+        </div>
+        <div class="promise-item">
+          <strong>존중</strong>
+          타인에게 상처나 피해를 주지 않기
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" onclick="switchTab('tab1')">1. 윤리 퀴즈</button>
+      <button class="nav-tab" onclick="switchTab('tab2')">2. 질문 공식</button>
+      <button class="nav-tab" onclick="switchTab('tab3')">3. 교과별 질문</button>
+      <button class="nav-tab" onclick="switchTab('tab4')">4. 약속 그림 & 진로</button>
+      <button class="nav-tab" onclick="switchTab('tab5')">5. AI Agent 설계</button>
+      <button class="nav-tab" onclick="switchTab('tab6')">6. 이수증 발급</button>
+    </nav>
+
+    <!-- TAB 1: 윤리 퀴즈 -->
+    <div id="tab1" class="tab-content active">
+      <div class="card">
+        <h2>1. BeAT 사용 약속 & 윤리 O/X 퀴즈</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          AI를 안전하고 올바르게 사용하기 위해 지켜야 할 상황들을 판단해 보세요.
+        </p>
+
+        <div id="quiz-list">
+          <!-- Quizzes generated by JS -->
+        </div>
+
+        <button class="btn" onclick="checkQuizResults()" style="width: 100%; margin-top: 10px;">결과 확인하기</button>
+        <div id="quiz-score" style="margin-top: 15px; font-weight: bold; text-align: center; font-size: 1.1rem; color: var(--primary-blue);"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: 질문 공식 -->
+    <div id="tab2" class="tab-content">
+      <div class="card">
+        <h2>2. 좋은 질문 공식 (역할 + 상황 + 요청 + 형식)</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          AI에게 더 명확하고 유용한 답을 얻기 위해 4가지 필수 요소를 조합해 프롬프트를 만들어 보세요.
+        </p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="prompt-role">역할 (누구처럼 답할까?)</label>
+            <input type="text" id="prompt-role" class="form-control" value="친절한 고등학교 수학 선생님" oninput="updateFormulaPrompt()">
+          </div>
+          <div class="form-group">
+            <label for="prompt-situation">상황 (나는 지금 어떤 상황인가?)</label>
+            <input type="text" id="prompt-situation" class="form-control" value="고등학교 1학년 학생인데 이차함수 꼭짓점 구하는 개념이 헷갈려" oninput="updateFormulaPrompt()">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="prompt-request">요청 (무엇을 해줄까?)</label>
+            <input type="text" id="prompt-request" class="form-control" value="쉬운 예시 하나를 들어서 개념을 설명해 주고 연습 문제 1개를 내줘" oninput="updateFormulaPrompt()">
+          </div>
+          <div class="form-group">
+            <label for="prompt-format">형식 (어떤 모양으로 만들까?)</label>
+            <input type="text" id="prompt-format" class="form-control" value="단계별로 3줄 요약하고, 정답은 바로 말하지 말고 힌트부터 줘" oninput="updateFormulaPrompt()">
+          </div>
+        </div>
+
+        <span class="info-badge">완성된 생성형 AI 프롬프트</span>
+        <div class="prompt-box" id="formula-result">
+          <!-- Text auto inserted -->
+          <button class="btn btn-copy" onclick="copyText('formula-result')">복사하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: 교과별 질문 -->
+    <div id="tab3" class="tab-content">
+      <div class="card">
+        <h2>3. 교과별 핵심 실습 프롬프트 템플릿</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          과목을 선택하고 대괄호 [ ] 안의 빈칸을 자신의 공부 내용에 맞춰 변경한 후 복사해 사용하세요.
+        </p>
+
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchSubject('math')">수학</button>
+          <button class="sub-tab" onclick="switchSubject('eng')">영어</button>
+          <button class="sub-tab" onclick="switchSubject('kor')">국어</button>
+          <button class="sub-tab" onclick="switchSubject('sci')">과학</button>
+          <button class="sub-tab" onclick="switchSubject('his')">한국사/사회</button>
+          <button class="sub-tab" onclick="switchSubject('info')">정보</button>
+        </div>
+
+        <div id="subject-editor">
+          <!-- Dynamic Content generated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: 약속 그림 & 진로 -->
+    <div id="tab4" class="tab-content">
+      <!-- 약속 그림 생성기 -->
+      <div class="card">
+        <h2>4-1. 약속 그림(이미지 생성) 프롬프트 만들기</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          AI 사용 약속을 표현하는 이미지를 생성하기 위한 프롬프트를 자동으로 조립합니다.
+        </p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="img-topic">주제 (지킬 약속)</label>
+            <select id="img-topic" onchange="updateImagePrompt()">
+              <option value="보호: 내 개인정보(이름, 학교, 연락처)는 내가 스스로 지켜요">보호 (개인정보 보호)</option>
+              <option value="확인: AI의 답을 무조건 믿지 않고 출처와 비교해요">확인 (출처 확인)</option>
+              <option value="정직: AI가 써 준 글을 그대로 내지 않고 출처를 밝혀요">정직 (출처 표기 및 출처 명시)</option>
+              <option value="존중: 남에게 상처나 피해를 주는 이미지를 만들지 않아요">존중 (타인 존중)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="img-style">그림 화풍/스타일</label>
+            <select id="img-style" onchange="updateImagePrompt()">
+              <option value="밝은 웹툰 스타일">밝은 웹툰 스타일</option>
+              <option value="3D 귀여운 애니메이션 스타일">3D 캐릭터 애니메이션 스타일</option>
+              <option value="깔끔한 평면 일러스트(Flat Art)">플랫 일러스트 스타일</option>
+              <option value="감성적인 수채화 느낌">수채화 느낌</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="img-detail">장면 세부 묘사</label>
+          <input type="text" id="img-detail" class="form-control" value="고등학생이 소중한 정보 카드를 자물쇠 상자에 넣고, 파란색 AI 로봇 튜터가 엄지를 치켜세우는 모습" oninput="updateImagePrompt()">
+        </div>
+
+        <span class="info-badge">완성된 이미지 프롬프트 (개인GPT 입력용)</span>
+        <div class="prompt-box" id="img-prompt-result">
+          <!-- Dynamic generated -->
+          <button class="btn btn-copy" onclick="copyText('img-prompt-result')">복사하기</button>
+        </div>
+      </div>
+
+      <!-- 내 진로 탐색 프롬프트 -->
+      <div class="card">
+        <h2>4-2. 생성형 AI 기반 내 진로 탐색 프롬프트</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          자신의 경험과 관심사를 바탕으로 맞춤형 진로 탐색 상담 프롬프트를 구성해 보세요. (개인정보 입력 금지!)
+        </p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="career-grade">학년</label>
+            <select id="career-grade" onchange="updateCareerPrompt()">
+              <option value="1학년">고등학교 1학년</option>
+              <option value="2학년" selected>고등학교 2학년</option>
+              <option value="3학년">고등학교 3학년</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="career-exp">나의 경험</label>
+            <input type="text" id="career-exp" class="form-control" value="동아리에서 미세먼지 측정기를 만들어보고 환경 문제에 관심이 생김" oninput="updateCareerPrompt()">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="career-like">좋아하는 것</label>
+            <input type="text" id="career-like" class="form-control" value="그림 그리기, 친구들 고민 들어주기, 데이터 정리하기" oninput="updateCareerPrompt()">
+          </div>
+          <div class="form-group">
+            <label for="career-good">잘하는 것 / 장점</label>
+            <input type="text" id="career-good" class="form-control" value="복잡한 내용을 쉽게 설명하기, 계획 세우기" oninput="updateCareerPrompt()">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="career-subject">관심 과목</label>
+          <input type="text" id="career-subject" class="form-control" value="생명과학, 정보, 사회문화" oninput="updateCareerPrompt()">
+        </div>
+
+        <span class="info-badge">진로 탐색 프롬프트</span>
+        <div class="prompt-box" id="career-prompt-result">
+          <!-- Dynamic generated -->
+          <button class="btn btn-copy" onclick="copyText('career-prompt-result')">복사하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: AI Agent 설계 -->
+    <div id="tab5" class="tab-content">
+      <div class="card">
+        <h2>5. 나만의 AI Agent 만들기 설계서</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          BeAT의 AI Agent 기능에 입력할 나만의 학습 챗봇 규칙을 작성하고 검증해 보세요.
+        </p>
+
+        <div class="form-group">
+          <label for="agent-name">Agent 이름</label>
+          <input type="text" id="agent-name" class="form-control" value="통합과학 퀴즈 코치" oninput="updateAgentForm()">
+        </div>
+
+        <div class="form-group">
+          <label for="agent-desc">Agent 설명 (200 Byte 이내 권장)</label>
+          <input type="text" id="agent-desc" class="form-control" value="학습지로 한 문제씩 퀴즈를 내고 틀리면 정답 대신 힌트를 주는 도우미" oninput="updateAgentForm()">
+          <small id="desc-byte-count" style="color: var(--text-muted); font-size: 0.8rem;">0 / 200 Bytes</small>
+        </div>
+
+        <div class="form-group">
+          <label for="agent-prompt">Agent 지침 프롬프트 (챗봇의 역할 및 동작 규칙)</label>
+          <textarea id="agent-prompt" rows="4" class="form-control" oninput="updateAgentForm()">너는 친절한 고등학교 통합과학 퀴즈 코치야. 
+[역할] 학생이 요청하는 단원의 개념을 한 번에 한 문제씩만 퀴즈로 내줘.
+[규칙] 
+1. 학생이 틀린 답을 말하면 정답을 바로 알려주지 말고 원리를 쉽게 깨달을 수 있는 힌트를 제공해줘.
+2. 학생이 정답을 맞추면 격려해주고 다음 문제로 넘어가.
+3. 확실하지 않은 과학적 사실은 '교과서 확인 필요'라고 명시해줘.
+4. 개인정보(이름, 학교 등)는 절대 물어보거나 수집하지 마.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="agent-first">시작 대화 프롬프트 (첫 인사/추천 대화)</label>
+          <input type="text" id="agent-first" class="form-control" value="안녕하세요! 어떤 단원 퀴즈를 풀어볼까요? (예: 탄소 순환, 지각 변동)" oninput="updateAgentForm()">
+        </div>
+
+        <span class="info-badge">설계 완료된 Agent 구성 데이터</span>
+        <div class="prompt-box" id="agent-result-box">
+          <!-- Dynamic generated -->
+          <button class="btn btn-copy" onclick="copyText('agent-result-box')">복사하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: 이수증 발급 -->
+    <div id="tab6" class="tab-content">
+      <div class="card">
+        <h2>6. BeAT 활용 교육 이수증 발급 & 돌아보기</h2>
+        <p style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted);">
+          실습을 모두 완료하셨나요? 이름과 학번, 배운 점을 입력하고 나만의 이수증을 발급받으세요.
+        </p>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="student-name">학생 이름</label>
+            <input type="text" id="student-name" class="form-control" placeholder="예: 김부산">
+          </div>
+          <div class="form-group">
+            <label for="student-id">학교 및 학번</label>
+            <input type="text" id="student-id" class="form-control" placeholder="예: 광명고 2학년 1반 15번">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="student-review">오늘 교육으로 느낀 점 / 다짐 (3줄 소감)</label>
+          <textarea id="student-review" rows="3" class="form-control" placeholder="1. AI 답을 무조건 믿지 않고 교과서와 출처를 확인하겠습니다.&#10;2. 개인정보를 절대 프롬프트에 입력하지 않겠습니다.&#10;3. 나만의 질문 공식으로 공부에 효과적으로 활용하겠습니다."></textarea>
+        </div>
+
+        <button class="btn" onclick="generateCertificate()" style="width: 100%; margin-bottom: 20px;">이수증 생성하기</button>
+
+        <!-- Certificate Preview & Canvas -->
+        <div class="canvas-container" id="cert-wrapper" style="display: none;">
+          <canvas id="certCanvas" width="800" height="550"></canvas>
+          <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+            <button class="btn" onclick="downloadCertificate()">이수증 이미지(PNG) 다운로드</button>
+          </div>
+        </div>
+
+        <!-- Padlet and Survey Link Box -->
+        <div style="margin-top: 25px; padding: 18px; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: var(--radius-sm);">
+          <h3 style="color: #0369a1; font-size: 1rem; margin-bottom: 8px;">📢 최종 제출 및 만족도 조사 안내</h3>
+          <ul style="padding-left: 20px; font-size: 0.9rem; color: #334155;">
+            <li>발급받은 <strong>이수증 이미지</strong>는 클래스 <strong>패들렛(Padlet)</strong> 게시판에 업로드해 주세요.</li>
+            <li>수업 종료 전, 교육 만족도 조사 설문(forms.gle/Rb7JTGhQbk8XXnGUA)을 꼭 작성해 주세요.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">클립보드에 복사되었습니다!</div>
+
+  <script>
+    /* ==========================================
+       1. Navigation & Tab Switching Logic
+    ========================================== */
+    function switchTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.nav-tab');
+
+      tabs.forEach(tab => tab.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      
+      // Highlight button
+      const activeBtn = Array.from(buttons).find(b => b.getAttribute('onclick').includes(tabId));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+
+    function copyText(elementId) {
+      const element = document.getElementById(elementId);
+      // Clone element and remove button for clean copy
+      const clone = element.cloneNode(true);
+      const btns = clone.querySelectorAll('button');
+      btns.forEach(b => b.remove());
+
+      const textToCopy = clone.innerText.trim();
+
+      // Create dummy textarea for copying
+      const dummy = document.createElement('textarea');
+      document.body.appendChild(dummy);
+      dummy.value = textToCopy;
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+
+      showToast('클립보드에 복사되었습니다!');
+    }
+
+    /* ==========================================
+       2. TAB 1: Quiz Logic
+    ========================================== */
+    const quizData = [
+      {
+        q: "1. 국어 수행평가 감상문을 AI가 작성해 준 그대로 이름만 바꿔서 제출했다.",
+        a: "X",
+        exp: "[정직 약속 위반] AI는 아이디어를 얻거나 참고하는 도구입니다. 제출글은 직접 작성하고 AI 활용 사실을 밝혀야 합니다."
+      },
+      {
+        q: "2. AI가 알려준 역사 사건 연도가 교과서 내용과 달라 교과서 내용을 우선하여 답안을 작성했다.",
+        a: "O",
+        exp: "[확인 약속 준수] AI는 그럴듯한 거짓말(할루시네이션)을 할 수 있으므로 항상 출처나 교과서와 직접 비교해야 합니다."
+      },
+      {
+        q: "3. 진로 상담 프롬프트에 내 이름, OO고등학교, 전화번호, 얼굴 사진을 그대로 입력하여 물어보았다.",
+        a: "X",
+        exp: "[보호 약속 위반] 프롬프트에는 절대 개인정보를 올리지 않습니다. '고등학교 2학년 학생' 정도로 표현해도 충분합니다."
+      },
+      {
+        q: "4. 장난으로 친구의 사진을 합성 이미지 AI로 만들어 단톡방에 공유했다.",
+        a: "X",
+        exp: "[존중 약속 위반] 타인의 허락 없는 합성이나 장난은 심각한 디지털 윤리 위반 및 법적 문제가 될 수 있습니다."
+      }
+    ];
+
+    let userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('quiz-list');
+      container.innerHTML = '';
+
+      quizData.forEach((item, index) => {
+        const quizDiv = document.createElement('div');
+        quizDiv.className = 'quiz-item';
+        quizDiv.innerHTML = `
+          <div class="quiz-question">${item.q}</div>
+          <div class="quiz-options">
+            <button class="quiz-opt-btn" id="q${index}-o" onclick="selectQuiz(${index}, 'O')">O (괜찮음)</button>
+            <button class="quiz-opt-btn" id="q${index}-x" onclick="selectQuiz(${index}, 'X')">X (안됨)</button>
+          </div>
+          <div class="quiz-explanation" id="q${index}-exp">${item.exp}</div>
+        `;
+        container.appendChild(quizDiv);
+      });
+    }
+
+    function selectQuiz(index, choice) {
+      userAnswers[index] = choice;
+      const btnO = document.getElementById(`q${index}-o`);
+      const btnX = document.getElementById(`q${index}-x`);
+
+      btnO.className = 'quiz-opt-btn' + (choice === 'O' ? ' selected-o' : '');
+      btnX.className = 'quiz-opt-btn' + (choice === 'X' ? ' selected-x' : '');
+    }
+
+    function checkQuizResults() {
+      if (Object.keys(userAnswers).length < quizData.length) {
+        alert('모든 퀴즈 항목을 선택해 주세요!');
+        return;
+      }
+
+      let score = 0;
+      quizData.forEach((item, index) => {
+        const expBox = document.getElementById(`q${index}-exp`);
+        expBox.style.display = 'block';
+
+        if (userAnswers[index] === item.a) {
+          score++;
+        }
+      });
+
+      const scoreDiv = document.getElementById('quiz-score');
+      scoreDiv.innerText = `총 ${quizData.length}문제 중 ${score}문제를 맞추셨습니다! (${score === quizData.length ? '완벽합니다! 👏' : '해설을 확인해 보세요.'})`;
+    }
+
+    /* ==========================================
+       3. TAB 2: Formula Prompt Builder
+    ========================================== */
+    function updateFormulaPrompt() {
+      const role = document.getElementById('prompt-role').value;
+      const situation = document.getElementById('prompt-situation').value;
+      const request = document.getElementById('prompt-request').value;
+      const format = document.getElementById('prompt-format').value;
+
+      const resultBox = document.getElementById('formula-result');
+      const promptText = `너는 ${role}이야.\n\n나는 지금 ${situation}.\n\n${request}.\n\n[답변 형식 및 주의사항]\n${format}.\n확실하지 않은 정보는 '확인 필요'라고 명시해 주고, 개인정보는 묻지 말아 줘.`;
+
+      resultBox.innerHTML = `${promptText.replace(/\n/g, '<br>')}<button class="btn btn-copy" onclick="copyText('formula-result')">복사하기</button>`;
+    }
+
+    /* ==========================================
+       4. TAB 3: Subject Prompts
+    ========================================== */
+    const subjectData = {
+      math: {
+        title: "수학 - 개념 이해 및 유형 풀이",
+        template: `너는 친절한 고등학교 수학 선생님이야.
+[등차수열의 합] 공식이 왜 그렇게 유도되는지 1부터 100까지 더하는 예시로 단계별로 설명해 줘.
+공식 설명 후 비슷한 난이도의 연습 문제 1개를 내주고, 내가 풀이를 입력하면 정답 여부와 틀린 단계만 짚어 줘.`,
+        note: "[] 안의 개념명을 내가 공부 중인 단원으로 수정하세요."
+      },
+      eng: {
+        title: "영어 - 문장 구조 분석 및 직독직해",
+        template: `너는 고등학교 영어 학습 튜터야.
+아래 문장을 주어(S), 동사(V), 목적어(O)/보어(C), 수식어로 끊어 구조를 분석해 주고, 직독직해와 자연스러운 번역을 비교하여 보여 줘.
+정답 해석을 주기 전에 내가 먼저 해석해 볼 수 있도록 힌트부터 줘.
+
+[문장: Although generative AI provides rapid responses, users must independently verify the authenticity of the information.]`,
+        note: "[] 안의 영어 문장을 본인의 영어 본문 문장으로 변경하세요."
+      },
+      kor: {
+        title: "국어 - 시/소설 작품 분석",
+        template: `너는 고등학교 국어 선생님이야.
+[윤동주의 '서시'] 작품에서 화자의 정서가 집약되어 드러나는 핵심 시어 3개를 찾고, 그렇게 생각한 근거가 되는 시구와 함께 설명해 줘.
+해석에 다양성이 존재하는 부분은 '다른 해석 가능'이라고 함께 명시해 줘.`,
+        note: "[] 안의 작품명을 공부하고 있는 작품으로 교체하세요."
+      },
+      sci: {
+        title: "과학 - 그래프 및 현상 원리 이해",
+        template: `너는 신나는 과학교사야.
+[속도-시간 그래프에서 기울기와 아래 면적이 의미하는 바]를 '자전거 타기' 일상 예시로 쉽게 비유하여 설명해 줘.
+원리 설명 후 간단한 적용 퀴즈 2개를 힌트와 함께 내 줘.`,
+        note: "[] 안의 과학 개념이나 그래프 종류를 바꿔보세요."
+      },
+      his: {
+        title: "한국사/사회 - 역사적 사건 흐름 정리",
+        template: `너는 한국사 정리 도우미야.
+[일제 강점기 1910년대~1930년대 민족 운동]의 주요 사건 6개를 시간 순서 표로 정리해 주고, 각 사건의 원인과 결과를 한 줄로 요약해 줘.
+연도 옆에는 '교과서 연표 확인' 칸을 만들어 줘.`,
+        note: "[] 안의 역사적 단원이나 시대를 입력하세요."
+      },
+      info: {
+        title: "정보 - 프로그래밍 코드 오류 찾기 (디버깅)",
+        template: `너는 파이썬 프로그래밍 튜터야.
+아래 코드에서 오류가 발생하는 줄 번호와 원인만 지적해 줘.
+수정된 전체 정답 코드를 바로 제시하지 말고, 내가 스스로 수정해 볼 수 있도록 힌트만 줘.
+
+[코드:
+def calculate_average(scores):
+    total = 0
+    for s in scores
+        total += s
+    return total / len(scores)
+]`,
+        note: "[] 안에 본인이 작성 중인 코드 오류를 넣어보세요."
+      }
+    };
+
+    function switchSubject(key) {
+      document.querySelectorAll('.sub-tabs .sub-tab').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const data = subjectData[key];
+      const container = document.getElementById('subject-editor');
+
+      container.innerHTML = `
+        <h3 style="font-size: 1.05rem; margin-bottom: 8px; color: var(--dark-navy);">${data.title}</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">${data.note}</p>
+        <div class="form-group">
+          <textarea id="subject-prompt-input" rows="6" class="form-control">${data.template}</textarea>
+        </div>
+        <span class="info-badge">복사하여 BeAT(개인GPT/수업GPT)에 질문하세요</span>
+        <div class="prompt-box" id="subject-prompt-box">
+          <span id="subject-text">${data.template.replace(/\n/g, '<br>')}</span>
+          <button class="btn btn-copy" onclick="copyText('subject-prompt-box')">복사하기</button>
+        </div>
+      `;
+
+      // Add live update listener
+      document.getElementById('subject-prompt-input').addEventListener('input', function(e) {
+        document.getElementById('subject-text').innerHTML = e.target.value.replace(/\n/g, '<br>');
+      });
+    }
+
+    /* ==========================================
+       5. TAB 4: Image & Career Prompt Generator
+    ========================================== */
+    function updateImagePrompt() {
+      const topic = document.getElementById('img-topic').value;
+      const style = document.getElementById('img-style').value;
+      const detail = document.getElementById('img-detail').value;
+
+      const result = `${style}로 포스터 이미지를 그려 줘.
+[주제 및 메시지] '${topic}'
+[장면 구성] ${detail}.
+[주의사항] 실제 인물이 아닌 캐릭터로 표현하고, 세로 3:4 비율 포스터로 만들어 줘. 이미지 내에 한글 글자는 넣지 말고 그래픽 위주로 그려 줘.`;
+
+      const box = document.getElementById('img-prompt-result');
+      box.innerHTML = `${result.replace(/\n/g, '<br>')}<button class="btn btn-copy" onclick="copyText('img-prompt-result')">복사하기</button>`;
+    }
+
+    function updateCareerPrompt() {
+      const grade = document.getElementById('career-grade').value;
+      const exp = document.getElementById('career-exp').value;
+      const like = document.getElementById('career-like').value;
+      const good = document.getElementById('career-good').value;
+      const subject = document.getElementById('career-subject').value;
+
+      const result = `너는 고등학생 진로 상담 전문 선생님이야. 
+나는 고등학교 ${grade} 학생이야.
+
+- 나의 경험: ${exp}
+- 좋아하는 것: ${like}
+- 잘하는 것 / 장점: ${good}
+- 관심 과목: ${subject}
+
+위 내용을 바탕으로 나에게 어울리는 진로 및 직업 3가지를 추천해 줘.
+각 진로마다 
+① 내 이야기 및 경험과 연결되는 이유 
+② 고등학교 추천 선택과목 
+③ 이번 달에 도전해 볼 수 있는 활동 1가지를 표 형식으로 정리해 줘.
+확실하지 않은 직업 및 학과 정보는 '커리어넷 확인 필요'라고 표시해 줘. (내 개인정보는 포함되어 있지 않아.)`;
+
+      const box = document.getElementById('career-prompt-result');
+      box.innerHTML = `${result.replace(/\n/g, '<br>')}<button class="btn btn-copy" onclick="copyText('career-prompt-result')">복사하기</button>`;
+    }
+
+    /* ==========================================
+       6. TAB 5: AI Agent Form
+    ========================================== */
+    function updateAgentForm() {
+      const name = document.getElementById('agent-name').value;
+      const desc = document.getElementById('agent-desc').value;
+      const prompt = document.getElementById('agent-prompt').value;
+      const first = document.getElementById('agent-first').value;
+
+      // Byte calculation for desc (Korean = ~3 bytes, English/Space = 1 byte)
+      let byteCount = 0;
+      for (let i = 0; i < desc.length; i++) {
+        const char = desc.charCodeAt(i);
+        byteCount += char > 128 ? 3 : 1;
+      }
+
+      const byteElem = document.getElementById('desc-byte-count');
+      byteElem.innerText = `${byteCount} / 200 Bytes`;
+      byteElem.style.color = byteCount > 200 ? 'var(--error-red)' : 'var(--text-muted)';
+
+      const resultText = `[Agent 이름]\n${name}\n\n[Agent 설명]\n${desc}\n\n[Agent 프롬프트 (지침)]\n${prompt}\n\n[시작 프롬프트]\n${first}`;
+
+      const box = document.getElementById('agent-result-box');
+      box.innerHTML = `${resultText.replace(/\n/g, '<br>')}<button class="btn btn-copy" onclick="copyText('agent-result-box')">복사하기</button>`;
+    }
+
+    /* ==========================================
+       7. TAB 6: Certificate Canvas Generation
+    ========================================== */
+    function generateCertificate() {
+      const name = document.getElementById('student-name').value.trim();
+      const idInfo = document.getElementById('student-id').value.trim();
+      const review = document.getElementById('student-review').value.trim();
+
+      if (!name || !idInfo) {
+        alert('이름과 학교/학번 정보를 입력해 주세요!');
+        return;
+      }
+
+      const wrapper = document.getElementById('cert-wrapper');
+      wrapper.style.display = 'block';
+
+      const canvas = document.getElementById('certCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Clear Canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background Gradient
+      const grad = ctx.createLinearGradient(0, 0, 800, 550);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(1, '#f0f9ff');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Outer Border
+      ctx.strokeStyle = '#0066cc';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+
+      // Inner Decorative Line
+      ctx.strokeStyle = '#00a3e0';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(25, 25, canvas.width - 50, canvas.height - 50);
+
+      // Title Banner
+      ctx.fillStyle = '#002b49';
+      ctx.font = 'bold 28px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('BeAT AI 활용 교육 이수증', 400, 80);
+
+      ctx.fillStyle = '#0066cc';
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('부산광역시교육청 AI 튜터 BeAT 실습 교육 과정', 400, 110);
+
+      // Divider
+      ctx.beginPath();
+      ctx.moveTo(100, 130);
+      ctx.lineTo(700, 130);
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Student Info
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#1e293b';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText(`소속 / 학번 : ${idInfo}`, 100, 180);
+      ctx.fillText(`성       명 : ${name}`, 100, 215);
+
+      // Description
+      ctx.font = '15px sans-serif';
+      ctx.fillStyle = '#334155';
+      ctx.fillText('위 학생은 부산광역시교육청 BeAT AI 튜터 활용 교육 과정', 100, 260);
+      ctx.fillText('(AI 윤리, 질문 공식, 교과별 활용, 나만의 AI Agent 설계)을 성실히 이수하였음을 증명합니다.', 100, 285);
+
+      // Review Box
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(90, 310, 620, 110);
+      ctx.strokeStyle = '#bae6fd';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(90, 310, 620, 110);
+
+      ctx.fillStyle = '#0369a1';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(' [ 나의 학습 다짐 및 소감 ]', 100, 335);
+
+      ctx.fillStyle = '#475569';
+      ctx.font = '13px sans-serif';
+      
+      // Wrap review text into canvas
+      const reviewLines = review ? review.split('\n') : ['안전하고 정직하게 AI를 활용하겠습니다.'];
+      let lineY = 360;
+      reviewLines.slice(0, 3).forEach(line => {
+        ctx.fillText(line.substring(0, 50), 110, lineY);
+        lineY += 22;
+      });
+
+      // Date & Seal
+      const today = new Date();
+      const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '14px sans-serif';
+      ctx.fillText(dateStr, 400, 460);
+
+      ctx.fillStyle = '#002b49';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('부산광역시교육청 × 부산대학교 AI융합교육원', 400, 495);
+
+      // Scroll smoothly to preview
+      wrapper.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadCertificate() {
+      const canvas = document.getElementById('certCanvas');
+      const name = document.getElementById('student-name').value.trim() || '학생';
+      
+      const link = document.createElement('a');
+      link.download = `BeAT_교육이수증_${name}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    /* ==========================================
+       8. Initializations on Load
+    ========================================== */
+    window.onload = function() {
+      renderQuiz();
+      updateFormulaPrompt();
+      switchSubject('math');
+      updateImagePrompt();
+      updateCareerPrompt();
+      updateAgentForm();
+    };
+  </script>
+</body>
+</html>
