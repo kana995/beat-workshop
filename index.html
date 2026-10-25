@@ -22,13 +22,11 @@
             font-weight: 700;
             background-color: #eff6ff;
         }
-        /* 모든 메뉴의 상단 소개 영역을 웹앱 제작 메뉴와 같은 그라데이션 배너로 통일 */
+        /* 상단 소개 영역 그라데이션 스타일 통일 */
         #content-1 > .bg-white > div:first-child,
         #content-2 > .bg-white > div:first-child,
         #content-3 > .bg-white > div:first-child,
-        #content-4 > .bg-white > div:first-child,
-        #content-5 > .bg-white > div:first-child,
-        #content-7 > .bg-white > div:first-child {
+        #content-4 > .bg-white > div:first-child {
             background: linear-gradient(110deg, #427a91 0%, #4050d7 100%);
             color: #ffffff;
             padding: 1.5rem;
@@ -39,25 +37,19 @@
         #content-1 > .bg-white > div:first-child h2,
         #content-2 > .bg-white > div:first-child h2,
         #content-3 > .bg-white > div:first-child h2,
-        #content-4 > .bg-white > div:first-child h2,
-        #content-5 > .bg-white > div:first-child h2,
-        #content-7 > .bg-white > div:first-child h2 {
+        #content-4 > .bg-white > div:first-child h2 {
             color: #ffffff;
         }
         #content-1 > .bg-white > div:first-child p,
         #content-2 > .bg-white > div:first-child p,
         #content-3 > .bg-white > div:first-child p,
-        #content-4 > .bg-white > div:first-child p,
-        #content-5 > .bg-white > div:first-child p,
-        #content-7 > .bg-white > div:first-child p {
+        #content-4 > .bg-white > div:first-child p {
             color: #eff6ff;
         }
         #content-1 > .bg-white > div:first-child > div:first-child > span,
         #content-2 > .bg-white > div:first-child > span,
         #content-3 > .bg-white > div:first-child > span,
-        #content-4 > .bg-white > div:first-child > span,
-        #content-5 > .bg-white > div:first-child > span,
-        #content-7 > .bg-white > div:first-child > span {
+        #content-4 > .bg-white > div:first-child > span {
             background: rgba(255,255,255,.2);
             color: #ffffff;
         }
@@ -94,7 +86,7 @@
                     </div>
                 </div>
 
-                <!-- Navigation Tabs (7 Buttons Side-by-Side) -->
+                <!-- Navigation Tabs (4 Buttons Side-by-Side) -->
                 <nav class="flex overflow-x-auto space-x-1 sm:space-x-2 no-scrollbar py-2 border-t border-slate-100 w-full">
                     <button onclick="switchTab(1)" id="tab-1" class="tab-btn active shrink-0 px-3 py-3 text-xs sm:text-sm font-medium rounded-t-lg transition-colors duration-150 flex items-center gap-1.5 text-slate-600 hover:text-blue-600">
                         <i class="fas fa-shield-alt text-blue-500"></i>
@@ -112,22 +104,9 @@
                         <span id="p3-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] bg-green-100 text-green-700 font-bold rounded-full">완료</span>
                     </button>
                     <button onclick="switchTab(4)" id="tab-4" class="tab-btn shrink-0 px-3 py-3 text-xs sm:text-sm font-medium rounded-t-lg transition-colors duration-150 flex items-center gap-1.5 text-slate-600 hover:text-blue-600">
-                        <i class="fas fa-palette text-amber-500"></i>
-                        <span>4. 교과외 활동</span>
-                        <span id="p4-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] bg-green-100 text-green-700 font-bold rounded-full">완료</span>
-                    </button>
-                    <button onclick="switchTab(5)" id="tab-5" class="tab-btn shrink-0 px-3 py-3 text-xs sm:text-sm font-medium rounded-t-lg transition-colors duration-150 flex items-center gap-1.5 text-slate-600 hover:text-blue-600">
                         <i class="fas fa-user-gear text-purple-500"></i>
-                        <span>5. AI 에이전트</span>
-                        <span id="p5-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] bg-green-100 text-green-700 font-bold rounded-full">완료</span>
-                    </button>
-                    <button onclick="switchTab(6)" id="tab-6" class="tab-btn shrink-0 px-3 py-3 text-xs sm:text-sm font-medium rounded-t-lg transition-colors duration-150 flex items-center gap-1.5 text-slate-600 hover:text-blue-600">
-                        <i class="fas fa-laptop-code text-cyan-600"></i>
-                        <span>6. 웹앱 제작(선택)</span>
-                    </button>
-                    <button onclick="switchTab(7)" id="tab-7" class="tab-btn shrink-0 px-3 py-3 text-xs sm:text-sm font-medium rounded-t-lg transition-colors duration-150 flex items-center gap-1.5 text-slate-600 hover:text-blue-600">
-                        <i class="fas fa-award text-rose-500"></i>
-                        <span>7. 이수증</span>
+                        <span>4. AI 에이전트</span>
+                        <span id="p4-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] bg-green-100 text-green-700 font-bold rounded-full">완료</span>
                     </button>
                 </nav>
             </div>
@@ -189,7 +168,7 @@
                     </h3>
                     <p id="quiz-result-summary" class="text-sm text-slate-700 mb-4"></p>
                     <div class="p-4 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-600">
-                        💡 <strong>알림:</strong> 모든 문항의 해설을 위 문제 목록에서 확인할 수 있습니다. 퀴즈를 완료해야 이수증 발급 조건 1단계가 충족됩니다.
+                        💡 <strong>알림:</strong> 모든 문항의 해설을 위 문제 목록에서 확인할 수 있습니다.
                     </div>
                 </div>
             </div>
@@ -287,64 +266,11 @@
             </div>
         </section>
 
-        <!-- TAB 4: 교과외 활동 -->
+        <!-- TAB 4: 나만의 학교생활 맞춤형 AI 에이전트 -->
         <section id="content-4" class="tab-content hidden">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
                 <div class="mb-6 pb-4 border-b border-slate-100">
-                    <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-amber-100 text-amber-700 rounded-md mb-2">실습 4단계</span>
-                    <h2 class="text-xl font-bold text-slate-900">🎨 [교과외 활동] 동아리·자율·봉사·탐구 프로젝트</h2>
-                    <p class="text-slate-600 text-sm mt-1">동아리 기획안 작성, 카드뉴스/콘티 구상, 토론 입론서 및 반론 대비 작성을 지원하는 프롬프트입니다.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Form Controls -->
-                    <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
-                        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-                            <i class="fas fa-edit text-amber-600"></i> 내 맞춤 정보 입력하기
-                        </h3>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">활동 종류 / 동아리명</label>
-                            <input type="text" id="p4-club" value="유기동물 보호 동아리" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">활동 목표</label>
-                            <input type="text" id="p4-goal" value="교내 잔반 줄이기 캠페인" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">홍보 매체</label>
-                            <select id="p4-media" onchange="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
-                                <option value="카드뉴스 4컷 (주요 핵심 요약용)" selected>📸 카드뉴스 4컷 (주요 핵심 요약용)</option>
-                                <option value="카드뉴스 6컷 (스토리텔링 포함)">📸 카드뉴스 6컷 (스토리텔링 포함)</option>
-                                <option value="인스타그램 릴스 / 숏폼 30초 스크립트">🎬 인스타그램 릴스 / 숏폼 30초 스크립트</option>
-                                <option value="교내 홍보 포스터 헤드카피 & 메인 문구">🖼️ 교내 홍보 포스터 헤드카피 &amp; 메인 문구</option>
-                                <option value="학교 방송 / 아침 조회 안내 원고 (1분)">🎙️ 학교 방송 / 아침 조회 안내 원고 (1분)</option>
-                                <option value="학급 커뮤니티 / 블로그 게시물 원고">📝 학급 커뮤니티 / 블로그 게시물 원고</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Prompt Display & Copy -->
-                    <div class="flex flex-col">
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
-                                <i class="fas fa-terminal text-slate-500"></i> 완성된 프롬프트 폼
-                            </label>
-                            <button onclick="copyPrompt(4)" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-lg shadow transition-all flex items-center gap-1.5">
-                                <i class="fas fa-copy"></i>
-                                <span>프롬프트 복사하기</span>
-                            </button>
-                        </div>
-                        <textarea id="p4-output" readonly class="w-full flex-1 min-h-[280px] p-4 bg-slate-900 text-slate-100 font-mono text-xs sm:text-sm rounded-xl leading-relaxed resize-none focus:outline-none shadow-inner"></textarea>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 5: 나만의 학교생활 맞춤형 AI 에이전트 -->
-        <section id="content-5" class="tab-content hidden">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="mb-6 pb-4 border-b border-slate-100">
-                    <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-purple-100 text-purple-700 rounded-md mb-2">실습 5단계</span>
+                    <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-purple-100 text-purple-700 rounded-md mb-2">실습 4단계</span>
                     <h2 class="text-xl font-bold text-slate-900">🤖 [나만의 맞춤형 AI 에이전트] 설계</h2>
                     <p class="text-slate-600 text-sm mt-1">나에게 필요한 학교생활 보조 AI를 직접 만들고, 역할·기능·규칙·양식을 정해보는 시스템 프롬프트입니다.</p>
                 </div>
@@ -358,32 +284,32 @@
                         <div class="grid grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">에이전트 이름</label>
-                                <input type="text" id="p5-agentname" value="스마트 플래너 '알피'" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <input type="text" id="p4-agentname" value="스마트 플래너 '알피'" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">학년</label>
-                                <input type="text" id="p5-grade" value="2학년" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <input type="text" id="p4-grade" value="2학년" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                             </div>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">성격 및 톤앤매너</label>
-                            <input type="text" id="p5-personality" value="친절하지만 꼼꼼하고 현실적인 피드백을 주는 다정한 선배" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" id="p4-personality" value="친절하지만 꼼꼼하고 현실적인 피드백을 주는 다정한 선배" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">현재 겪고 있는 문제점</label>
-                            <input type="text" id="p5-problem" value="시험 기간에 과목별 공부 시간 배분을 잘 못하고 딴짓을 자주 함" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" id="p4-problem" value="시험 기간에 과목별 공부 시간 배분을 잘 못하고 딴짓을 자주 함" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">핵심 기능 1</label>
-                            <input type="text" id="p5-f1" value="나의 하루 일과와 시험 범위를 바탕으로 한 과목별 현실적인 타임테이블 작성" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" id="p4-f1" value="나의 하루 일과와 시험 범위를 바탕으로 한 과목별 현실적인 타임테이블 작성" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">핵심 기능 2</label>
-                            <input type="text" id="p5-f2" value="공부 중 집중력이 떨어질 때 시도할 수 있는 5분 루틴 제시" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" id="p4-f2" value="공부 중 집중력이 떨어질 때 시도할 수 있는 5분 루틴 제시" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">핵심 기능 3</label>
-                            <input type="text" id="p5-f3" value="과목별 학습 우선순위 점검 질문 제공" oninput="updatePrompt(5)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" id="p4-f3" value="과목별 학습 우선순위 점검 질문 제공" oninput="updatePrompt(4)" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                     </div>
 
@@ -393,145 +319,12 @@
                             <label class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                                 <i class="fas fa-terminal text-slate-500"></i> 완성된 에이전트 프롬프트 폼
                             </label>
-                            <button onclick="copyPrompt(5)" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-lg shadow transition-all flex items-center gap-1.5">
+                            <button onclick="copyPrompt(4)" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-lg shadow transition-all flex items-center gap-1.5">
                                 <i class="fas fa-copy"></i>
                                 <span>프롬프트 복사하기</span>
                             </button>
                         </div>
-                        <textarea id="p5-output" readonly class="w-full flex-1 min-h-[350px] p-4 bg-slate-900 text-slate-100 font-mono text-xs sm:text-sm rounded-xl leading-relaxed resize-none focus:outline-none shadow-inner"></textarea>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 6: 웹앱 제작 -->
-        <section id="content-6" class="tab-content hidden">
-            <div class="space-y-6">
-                <div class="rounded-2xl bg-gradient-to-r from-cyan-700 to-blue-700 text-white p-6 shadow-sm">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div><span class="text-xs font-semibold bg-white/20 rounded-full px-3 py-1">PROMPT LAB</span>
-                            <h2 class="text-2xl font-bold mt-3">🛠️ 나만의 학교생활 웹앱 만들기</h2>
-                            <p class="text-sm text-cyan-50 mt-2">아이디어를 고르고 프롬프트를 작성해 미리보기까지 확인해 보세요.</p></div>
-                        <div class="bg-white/10 rounded-xl p-4 min-w-40"><div class="text-xs text-cyan-100">나의 레벨</div><div id="webapp-level" class="text-xl font-bold mt-1">🌱 초보 코더</div><div class="text-xs text-cyan-100 mt-2">프롬프트 실습으로 성장해요</div></div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                    <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-5">
-                        <h3 class="font-bold text-lg">1. 시나리오 선택</h3><p class="text-sm text-slate-500 mt-1">만들고 싶은 학교생활 도구를 골라요.</p>
-                        <div class="grid grid-cols-2 gap-2 mt-4">
-                            <button onclick="selectWebScenario('lunch')" class="web-scenario p-3 border rounded-lg text-sm text-left hover:border-cyan-500" data-scenario="lunch">🍱 밥 시간 알리미</button>
-                            <button onclick="selectWebScenario('exam')" class="web-scenario p-3 border rounded-lg text-sm text-left hover:border-cyan-500" data-scenario="exam">📅 시험 D-Day</button>
-                            <button onclick="selectWebScenario('seating')" class="web-scenario p-3 border rounded-lg text-sm text-left hover:border-cyan-500" data-scenario="seating">🎲 자리 배치 추첨기</button>
-                            <button onclick="selectWebScenario('checklist')" class="web-scenario p-3 border rounded-lg text-sm text-left hover:border-cyan-500" data-scenario="checklist">✅ 수행평가 체크리스트</button>
-                        </div>
-                        <h3 class="font-bold text-lg mt-6">2. 프롬프트 작성</h3>
-                        <div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900"><strong>작성 팁</strong><ul class="list-disc ml-4 mt-1 space-y-1"><li>역할을 정해요: “너는 친절한 웹앱 개발자야.”</li><li>조건을 구체적으로 써요.</li><li>출력 형식과 디자인을 지정해요.</li></ul></div>
-                        <textarea id="webapp-prompt" rows="8" class="w-full mt-3 p-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-cyan-500 focus:outline-none" placeholder="만들고 싶은 웹앱을 자세히 설명하세요."></textarea>
-                        <div class="flex flex-wrap gap-2 mt-3"><button onclick="buildWebPreview()" class="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded-lg text-sm font-semibold">미리보기 만들기</button><button onclick="improveWebPrompt()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-semibold">프롬프트 힌트</button><button onclick="copyWebPrompt()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-semibold"><i class="fas fa-copy mr-1"></i>프롬프트 복사</button></div>
-                        <div id="webapp-feedback" class="mt-3 text-sm bg-blue-50 text-blue-900 p-3 rounded-lg" aria-live="polite">시나리오를 선택하면 시작 프롬프트가 자동으로 채워집니다.</div>
-                    </div>
-                    <div class="lg:col-span-3 bg-white border border-slate-200 rounded-2xl p-5">
-                        <div class="flex items-center justify-between gap-3"><div><h3 class="font-bold text-lg">3. 라이브 샌드박스</h3><p class="text-sm text-slate-500 mt-1">프롬프트에 맞춘 예시 UI를 확인해요.</p></div><button onclick="toggleWebCode()" class="text-xs border border-slate-300 rounded-lg px-3 py-2">코드 보기</button></div>
-                        <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 min-h-64"><div class="max-w-sm mx-auto bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"><div class="bg-cyan-700 text-white px-4 py-3"><div class="text-xs opacity-80">SCHOOL MINI APP</div><div id="web-preview-title" class="font-bold text-lg mt-1">나의 학교생활 도우미</div></div><div id="web-preview-body" class="p-4 text-sm text-slate-700"><p>왼쪽에서 시나리오를 선택하고 ‘미리보기 만들기’를 눌러보세요.</p></div></div></div>
-                        <pre id="webapp-code" class="hidden mt-3 p-4 rounded-xl bg-slate-900 text-green-200 text-xs overflow-x-auto whitespace-pre-wrap"></pre>
-                        <div class="mt-4"><h4 class="font-bold text-sm">프롬프트 레시피 북</h4><div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3"><button onclick="useWebRecipe('일정 관리 도우미','시험 날짜와 과목을 입력하면 D-Day와 하루 공부 계획을 카드 형태로 보여줘. 모바일에서도 읽기 쉬운 디자인으로 만들어줘.')" class="text-left p-3 bg-slate-50 hover:bg-cyan-50 rounded-lg border border-slate-200"><span class="text-xs text-cyan-700 font-bold">시간표/일정</span><div class="text-sm font-semibold mt-1">시험 D-Day 플래너</div></button><button onclick="useWebRecipe('암기 카드 앱','교과 개념과 설명을 입력하면 앞면에는 질문, 뒷면에는 답이 나오는 플래시카드를 만들어줘. 정답 확인 버튼을 넣어줘.')" class="text-left p-3 bg-slate-50 hover:bg-cyan-50 rounded-lg border border-slate-200"><span class="text-xs text-cyan-700 font-bold">학습/암기</span><div class="text-sm font-semibold mt-1">개념 암기 카드</div></button><button onclick="useWebRecipe('학급 체크리스트','할 일 추가, 완료 체크, 남은 항목 수 표시 기능이 있는 수행평가 체크리스트를 만들어줘. 깔끔한 카드형 디자인으로 보여줘.')" class="text-left p-3 bg-slate-50 hover:bg-cyan-50 rounded-lg border border-slate-200"><span class="text-xs text-cyan-700 font-bold">학급/동아리</span><div class="text-sm font-semibold mt-1">수행평가 체크리스트</div></button></div><p class="text-xs text-slate-500 mt-3">좋은 프롬프트는 역할·목표·조건·출력 형식을 포함합니다. 예: “학교생활 도구를 만드는 개발자 역할로, 모바일 친화적이고 버튼이 작동하는 체크리스트를 HTML 한 파일로 작성해줘.”</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 7: 이수증 -->
-        <section id="content-7" class="tab-content hidden">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div class="mb-6 pb-4 border-b border-slate-100">
-                    <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-rose-100 text-rose-700 rounded-md mb-2">최종 단계</span>
-                    <h2 class="text-xl font-bold text-slate-900">🎓 실습 이수증 발급</h2>
-                    <p class="text-slate-600 text-sm mt-1">실습활동 1부터 5까지 모두 완료하고 프롬프트 복사를 완료하면 이수증을 발급할 수 있습니다.</p>
-                </div>
-
-                <!-- Progress Tracker -->
-                <div class="mb-8 p-5 bg-slate-50 rounded-xl border border-slate-200">
-                    <h3 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                        <i class="fas fa-tasks text-blue-600"></i> 실습 진행 상태 점검
-                    </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                        <div id="check-step-1" class="p-3 bg-white border border-slate-200 rounded-lg text-center">
-                            <div class="text-xs text-slate-500">실습 1</div>
-                            <div class="text-xs font-bold mt-1 text-slate-400">AI 윤리 OX</div>
-                            <i class="fas fa-circle-xmark text-slate-300 mt-2 text-base"></i>
-                        </div>
-                        <div id="check-step-2" class="p-3 bg-white border border-slate-200 rounded-lg text-center">
-                            <div class="text-xs text-slate-500">실습 2</div>
-                            <div class="text-xs font-bold mt-1 text-slate-400">진로·진학</div>
-                            <i class="fas fa-circle-xmark text-slate-300 mt-2 text-base"></i>
-                        </div>
-                        <div id="check-step-3" class="p-3 bg-white border border-slate-200 rounded-lg text-center">
-                            <div class="text-xs text-slate-500">실습 3</div>
-                            <div class="text-xs font-bold mt-1 text-slate-400">교과학습</div>
-                            <i class="fas fa-circle-xmark text-slate-300 mt-2 text-base"></i>
-                        </div>
-                        <div id="check-step-4" class="p-3 bg-white border border-slate-200 rounded-lg text-center">
-                            <div class="text-xs text-slate-500">실습 4</div>
-                            <div class="text-xs font-bold mt-1 text-slate-400">교과외 활동</div>
-                            <i class="fas fa-circle-xmark text-slate-300 mt-2 text-base"></i>
-                        </div>
-                        <div id="check-step-5" class="p-3 bg-white border border-slate-200 rounded-lg text-center col-span-2 sm:col-span-1">
-                            <div class="text-xs text-slate-500">실습 5</div>
-                            <div class="text-xs font-bold mt-1 text-slate-400">AI 에이전트</div>
-                            <i class="fas fa-circle-xmark text-slate-300 mt-2 text-base"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unlocked Certificate Form -->
-                <div id="cert-form-container" class="space-y-6">
-                    <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl text-blue-900 text-sm flex items-center gap-3">
-                        <i class="fas fa-info-circle text-blue-600 text-lg shrink-0"></i>
-                        <span>이수증에 인쇄될 기본 정보를 정확히 입력해주세요.</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">학교명</label>
-                            <input type="text" id="cert-school" placeholder="예: 한국고등학교" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">학년</label>
-                            <input type="text" id="cert-grade" placeholder="예: 2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">반</label>
-                            <input type="text" id="cert-class" placeholder="예: 3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">이름</label>
-                            <input type="text" id="cert-name" placeholder="예: 홍길동" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center pt-2">
-                        <button onclick="generateCertificate()" class="px-8 py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg transition-all flex items-center gap-2 text-base">
-                            <i class="fas fa-certificate"></i>
-                            <span>이수증 발급하기</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Certificate Display and Download Area -->
-                <div id="cert-result-area" class="mt-8 hidden border-t border-slate-200 pt-8">
-                    <h3 class="text-lg font-bold text-slate-900 mb-4 text-center">🎉 이수증이 생성되었습니다!</h3>
-                    
-                    <!-- Canvas Canvas Wrapper -->
-                    <div class="flex justify-center overflow-x-auto p-2">
-                        <canvas id="cert-canvas" width="800" height="600" class="border border-slate-300 shadow-xl rounded-lg max-w-full h-auto bg-white"></canvas>
-                    </div>
-
-                    <!-- Summary & Download Button -->
-                    <div class="mt-6 flex flex-col items-center gap-4">
-                        <button onclick="downloadCertificate()" class="px-8 py-3 bg-slate-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all flex items-center gap-2">
-                            <i class="fas fa-download text-amber-400"></i>
-                            <span>이수증 이미지 다운로드 (PNG)</span>
-                        </button>
+                        <textarea id="p4-output" readonly class="w-full flex-1 min-h-[350px] p-4 bg-slate-900 text-slate-100 font-mono text-xs sm:text-sm rounded-xl leading-relaxed resize-none focus:outline-none shadow-inner"></textarea>
                     </div>
                 </div>
             </div>
@@ -602,15 +395,6 @@
             }
         ];
 
-        // Track completion status
-        const practiceStatus = {
-            1: false, // Quiz Done
-            2: false, // Prompt 2 Copied
-            3: false, // Prompt 3 Copied
-            4: false, // Prompt 4 Copied
-            5: false  // Prompt 5 Copied
-        };
-
         // User answers for quiz
         const userAnswers = Array(10).fill(null);
 
@@ -620,8 +404,6 @@
             updatePrompt(2);
             updatePrompt(3);
             updatePrompt(4);
-            updatePrompt(5);
-            checkCertStatus();
         };
 
         // Toast Message Helper
@@ -646,10 +428,10 @@
             }, 3000);
         }
 
-        // Tab Switch Logic
+        // Tab Switch Logic (4 Tabs)
         function switchTab(tabNum) {
             // Hide all tab contents
-            for (let i = 1; i <= 7; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const content = document.getElementById(`content-${i}`);
                 const btn = document.getElementById(`tab-${i}`);
                 if (content) content.classList.add('hidden');
@@ -662,123 +444,14 @@
             if (activeContent) activeContent.classList.remove('hidden');
             if (activeBtn) activeBtn.classList.add('active');
 
-            // Banner visibility (Tabs 2 ~ 5 show prompt notice banner)
+            // Banner visibility (Tabs 2 ~ 4 show prompt notice banner)
             const banner = document.getElementById('prompt-notice-banner');
-            if (tabNum >= 2 && tabNum <= 5) {
+            if (tabNum >= 2 && tabNum <= 4) {
                 banner.classList.remove('hidden');
             } else {
                 banner.classList.add('hidden');
             }
-
-            if (tabNum === 7) {
-                checkCertStatus();
-            }
         }
-
-        // Web app creation lab
-        const webScenarios = {
-            lunch: { title: '🍱 밥 시간 알리미', prompt: '너는 친절한 웹앱 개발자야. 점심 메뉴와 알레르기 안내를 카드로 보여주는 학교 급식 알리미를 만들어줘. 메뉴, 날짜, 알레르기 유의 문구를 구분하고 모바일에서도 보기 쉬운 디자인으로 구성해줘.', body: '<p class="text-xs text-slate-500">오늘의 급식</p><h4 class="text-xl font-bold mt-1">🍚 오늘의 점심 메뉴</h4><ul class="list-disc ml-5 mt-3"><li>밥과 따뜻한 국</li><li>오늘의 메인 메뉴</li><li>채소 반찬과 과일</li></ul><p class="mt-4 p-3 bg-amber-50 rounded-lg text-amber-800 text-xs">알레르기 정보는 학교에서 제공한 공식 메뉴표를 확인하세요.</p>' },
-            exam: { title: '📅 시험 D-Day 플래너', prompt: '너는 학습 플래너 웹앱 개발자야. 시험 날짜와 과목을 입력하면 D-Day와 오늘 할 공부 목록을 보여주는 앱을 만들어줘. 날짜 카드, 과목별 체크리스트, 진행률을 표시하고 차분한 파란색 디자인을 사용해줘.', body: '<p class="text-xs text-slate-500">다가오는 시험</p><h4 class="text-2xl font-bold mt-1">D-14</h4><p class="text-sm mt-1">시험일까지 남은 날짜 예시</p><div class="mt-4 space-y-2"><label class="flex gap-2"><input type="checkbox"> 수학 개념 복습</label><label class="flex gap-2"><input type="checkbox"> 영어 단어 암기</label><label class="flex gap-2"><input type="checkbox"> 과학 오답 정리</label></div>' },
-            seating: { title: '🎲 자리 배치 추첨기', prompt: '너는 학급 활동 웹앱 개발자야. 학생 이름을 입력하고 추첨 버튼을 누르면 무작위 자리 배치를 보여주는 앱을 만들어줘. 결과를 표로 표시하고 다시 추첨 버튼을 넣어줘. 개인정보는 저장하지 않는다는 안내도 표시해줘.', body: '<h4 class="font-bold">자리 배치 예시</h4><div class="grid grid-cols-3 gap-2 mt-3 text-center">' + ['학생 A','학생 B','학생 C','학생 D','학생 E','학생 F'].map(n=>'<div class="p-3 bg-cyan-50 rounded-lg">'+n+'</div>').join('') + '</div><p class="text-xs text-slate-500 mt-3">예시 결과입니다. 실제 추첨 기능은 생성한 코드에서 구현해야 해요.</p>' },
-            checklist: { title: '✅ 수행평가 체크리스트', prompt: '너는 생산성 웹앱 개발자야. 수행평가 할 일을 추가하고 완료 여부를 체크할 수 있는 체크리스트를 만들어줘. 완료된 항목 수와 남은 항목 수를 보여주고, 깔끔한 카드형 디자인으로 구성해줘.', body: '<h4 class="font-bold">이번 주 할 일</h4><div class="mt-3 space-y-3"><label class="flex gap-2"><input type="checkbox"> 자료 조사하기</label><label class="flex gap-2"><input type="checkbox"> 발표 자료 만들기</label><label class="flex gap-2"><input type="checkbox"> 발표 연습하기</label></div><p class="mt-4 text-xs text-cyan-800 bg-cyan-50 rounded-lg p-3">완료한 항목을 체크하며 진행 상황을 관리해요.</p>' }
-        };
-        let selectedWebScenario = 'lunch';
-        let webappXp = 1;
-        function selectWebScenario(key) {
-            selectedWebScenario = key;
-            const item = webScenarios[key];
-            document.getElementById('webapp-prompt').value = item.prompt;
-            document.querySelectorAll('.web-scenario').forEach(btn => {
-                btn.classList.toggle('border-cyan-600', btn.dataset.scenario === key);
-                btn.classList.toggle('bg-cyan-50', btn.dataset.scenario === key);
-            });
-            document.getElementById('webapp-feedback').textContent = '시나리오를 선택했어요. 역할, 구체적인 조건, 출력 형식이 포함되어 있는지 확인해 보세요.';
-            document.getElementById('web-preview-title').textContent = item.title;
-            document.getElementById('web-preview-body').innerHTML = item.body;
-        }
-        function buildWebPreview() {
-            const prompt = document.getElementById('webapp-prompt').value.trim();
-            const feedback = document.getElementById('webapp-feedback');
-            if (!prompt) { feedback.textContent = '먼저 프롬프트를 입력하거나 시나리오를 선택해 주세요.'; return; }
-            const hasRole = /너는|역할|개발자|전문가/.test(prompt);
-            const hasCondition = /조건|기능|버튼|입력|체크|날짜|메뉴/.test(prompt);
-            const hasFormat = /카드|표|목록|디자인|모바일|HTML|화면/.test(prompt);
-            const notes = [];
-            if (!hasRole) notes.push('역할을 지정해 보세요.');
-            if (!hasCondition) notes.push('필요한 기능이나 조건을 구체적으로 써보세요.');
-            if (!hasFormat) notes.push('카드·표·목록 등 출력 형식이나 디자인을 정해보세요.');
-            feedback.textContent = notes.length ? '좋은 시작이에요! 개선 팁: ' + notes.join(' ') : '좋아요! 역할·기능 조건·출력 형식이 포함되어 있어요. 아래는 선택한 시나리오의 예시 미리보기입니다.';
-            const item = webScenarios[selectedWebScenario];
-            document.getElementById('web-preview-title').textContent = item.title;
-            document.getElementById('web-preview-body').innerHTML = item.body;
-            document.getElementById('webapp-code').textContent = '<!-- 예시 구조: 실제 웹앱 코드 생성은 AI 도구에서 프롬프트를 실행해야 합니다. -->\n<section class="app-card">\n  <h1>' + item.title + '</h1>\n  <p>사용자가 입력한 프롬프트를 바탕으로 기능을 설계합니다.</p>\n  <button>시작하기</button>\n</section>';
-            webappXp = Math.min(4, webappXp + 1);
-            const xpBar = document.getElementById('webapp-xp-bar');
-            const xpText = document.getElementById('webapp-xp-text');
-            if (xpBar) xpBar.style.width = (webappXp * 25) + '%';
-            if (xpText) xpText.textContent = '경험치 ' + webappXp + ' / 4';
-            document.getElementById('webapp-level').textContent = webappXp >= 4 ? '🏆 프롬프트 마스터' : webappXp >= 2 ? '💡 프롬프트 탐험가' : '🌱 초보 코더';
-        }
-        function improveWebPrompt() {
-            document.getElementById('webapp-feedback').textContent = '힌트: “너는 [역할]이야. [누가 사용할지]를 위해 [핵심 기능]을 만들고, [색상/카드/표 등 출력 형식]으로 보여줘. 모바일에서도 사용하기 쉽게 해줘.”처럼 구체적으로 작성해 보세요.';
-        }
-        async function copyWebPrompt() {
-            const field = document.getElementById('webapp-prompt');
-            const prompt = field ? field.value : '';
-            if (!prompt.trim()) {
-                showToast('먼저 프롬프트를 작성하거나 시나리오를 선택해 주세요.', false);
-                if (field) field.focus();
-                return;
-            }
-
-            try {
-                if (navigator.clipboard && window.isSecureContext) {
-                    await navigator.clipboard.writeText(prompt);
-                    showToast('웹앱 제작 프롬프트가 클립보드에 복사되었습니다!');
-                    return;
-                }
-            } catch (err) {
-            }
-
-            let temp = null;
-            try {
-                temp = document.createElement('textarea');
-                temp.value = prompt;
-                temp.setAttribute('readonly', '');
-                temp.style.position = 'fixed';
-                temp.style.left = '-9999px';
-                temp.style.top = '0';
-                temp.style.opacity = '0';
-                document.body.appendChild(temp);
-                temp.focus();
-                temp.select();
-                temp.setSelectionRange(0, temp.value.length);
-                const copied = document.execCommand('copy');
-                if (!copied) throw new Error('execCommand copy returned false');
-                showToast('웹앱 제작 프롬프트가 클립보드에 복사되었습니다!');
-            } catch (err) {
-                if (field) {
-                    field.focus();
-                    field.select();
-                    field.setSelectionRange(0, field.value.length);
-                }
-                showToast('자동 복사가 차단되었습니다. 선택된 프롬프트에서 Ctrl+C를 눌러 복사해 주세요.', false);
-            } finally {
-                if (temp && temp.parentNode) temp.parentNode.removeChild(temp);
-            }
-        }
-
-        function useWebRecipe(title, recipe) {
-            selectedWebScenario = title.includes('암기') ? 'checklist' : title.includes('학급') ? 'checklist' : 'exam';
-            document.getElementById('webapp-prompt').value = '너는 ' + title + '을 만드는 웹앱 개발자야. ' + recipe;
-            document.getElementById('webapp-feedback').textContent = '레시피를 프롬프트 입력창에 넣었어요. 필요에 맞게 수정한 뒤 미리보기를 만들어 보세요.';
-        }
-        function toggleWebCode() {
-            const code = document.getElementById('webapp-code');
-            code.classList.toggle('hidden');
-            if (!code.classList.contains('hidden') && !code.textContent.trim()) buildWebPreview();
-        }
-        selectWebScenario('lunch');
 
         // 2. Quiz Rendering and Submission Logic
         function renderQuiz() {
@@ -858,13 +531,11 @@
             document.getElementById('quiz-result-summary').innerHTML = `총 10문항 중 <strong>${score / 10}문항</strong>을 맞혀 총점 <strong>${score}점</strong>을 획득하셨습니다.`;
 
             // Mark Quiz as completed
-            practiceStatus[1] = true;
             document.getElementById('quiz-badge').classList.remove('hidden');
             showToast("퀴즈가 채점되었습니다! 피드백을 확인하세요.");
-            checkCertStatus();
         }
 
-        // 3. Prompt Builder Logic (Tabs 2 to 5)
+        // 3. Prompt Builder Logic (Tabs 2 to 4)
         function updatePrompt(num) {
             let text = "";
             if (num === 2) {
@@ -896,27 +567,13 @@
                        `- 수학/과학 공식이 있다면 공식이 의미하는 바를 말글로 풀어 설명해 줘.`;
                 document.getElementById('p3-output').value = text;
             } else if (num === 4) {
-                const club = document.getElementById('p4-club').value || "유기동물 보호 동아리";
-                const goal = document.getElementById('p4-goal').value || "교내 잔반 줄이기 캠페인";
-                const media = document.getElementById('p4-media').value || "카드뉴스 4컷";
-
-                text = `[역할] 너는 고등학교 [${club}]의 아이디어 기획자야.\n` +
-                       `[상황] 우리 동아리에서는 이번에 [${goal}]을 기획하고 있어.\n` +
-                       `[요청]\n` +
-                       `1. 학생들이 흥미를 갖고 참여할 수 있는 창의적인 프로젝트 실행 아이디어 3가지를 제시해 줘.\n` +
-                       `2. 이 프로젝트를 홍보하기 위한 [${media}]의 초안 아웃라인을 작성해 줘.\n` +
-                       `[조건]\n` +
-                       `- 예산이 많이 들지 않고 학교 현장에서 실제로 실행 가능한 현실적인 아이디어여야 해.\n` +
-                       `- 타인의 저작권을 침해하지 않도록 독창적인 문구와 아이디어를 구성해 줘.`;
-                document.getElementById('p4-output').value = text;
-            } else if (num === 5) {
-                const agentname = document.getElementById('p5-agentname').value || "스마트 플래너 '알피'";
-                const grade = document.getElementById('p5-grade').value || "2학년";
-                const personality = document.getElementById('p5-personality').value || "친절하지만 꼼꼼하고 현실적인 피드백을 주는 다정한 선배";
-                const problem = document.getElementById('p5-problem').value || "시험 기간에 과목별 공부 시간 배분을 잘 못함";
-                const f1 = document.getElementById('p5-f1').value || "과목별 현실적인 타임테이블 작성";
-                const f2 = document.getElementById('p5-f2').value || "집중력 저하 시 5분 루틴 제시";
-                const f3 = document.getElementById('p5-f3').value || "학습 우선순위 점검 질문 제공";
+                const agentname = document.getElementById('p4-agentname').value || "스마트 플래너 '알피'";
+                const grade = document.getElementById('p4-grade').value || "2학년";
+                const personality = document.getElementById('p4-personality').value || "친절하지만 꼼꼼하고 현실적인 피드백을 주는 다정한 선배";
+                const problem = document.getElementById('p4-problem').value || "시험 기간에 과목별 공부 시간 배분을 잘 못함";
+                const f1 = document.getElementById('p4-f1').value || "과목별 현실적인 타임테이블 작성";
+                const f2 = document.getElementById('p4-f2').value || "집중력 저하 시 5분 루틴 제시";
+                const f3 = document.getElementById('p4-f3').value || "학습 우선순위 점검 질문 제공";
 
                 text = `[역할 & 페르소나]\n` +
                        `너는 고등학생의 학교생활을 돕는 전담 AI 에이전트인 '${agentname}'야.\n` +
@@ -934,7 +591,7 @@
                        `- 개인정보나 사적인 비밀을 묻거나 저장하려고 하지 마.\n\n` +
                        `[출력 양식]\n` +
                        `대답을 시작할 때 나에게 친근한 인사를 건네고, 내용은 가독성이 좋게 표(Table)나 글머리 기호(Bullet point)로 정리해 줘.`;
-                document.getElementById('p5-output').value = text;
+                document.getElementById('p4-output').value = text;
             }
         }
 
@@ -945,223 +602,11 @@
             try {
                 document.execCommand('copy');
                 showToast(`실습 ${num}번 프롬프트가 클립보드에 복사되었습니다!`);
-                practiceStatus[num] = true;
-                
                 const badge = document.getElementById(`p${num}-badge`);
                 if (badge) badge.classList.remove('hidden');
-                
-                checkCertStatus();
             } catch (err) {
                 showToast("복사에 실패했습니다. 수동으로 복사해주세요.", false);
             }
-        }
-
-        // 4. Certificate Validation & Generation
-        function checkCertStatus() {
-            for (let i = 1; i <= 5; i++) {
-                const stepElem = document.getElementById(`check-step-${i}`);
-                if (practiceStatus[i]) {
-                    stepElem.className = "p-3 bg-green-50 border border-green-200 rounded-lg text-center";
-                    stepElem.querySelector('i').className = "fas fa-check-circle text-green-500 mt-2 text-base";
-                    stepElem.querySelector('.text-xs.font-bold').className = "text-xs font-bold mt-1 text-green-700";
-                } else {
-                    stepElem.className = "p-3 bg-white border border-slate-200 rounded-lg text-center";
-                    stepElem.querySelector('i').className = "fas fa-circle-xmark text-slate-300 mt-2 text-base";
-                    stepElem.querySelector('.text-xs.font-bold').className = "text-xs font-bold mt-1 text-slate-400";
-                }
-            }
-        }
-
-        function generateCertificate() {
-            const allDone = Object.values(practiceStatus).every(val => val === true);
-            if (!allDone) {
-                showToast("실습 1부터 5까지의 모든 항목(퀴즈 풀기 및 프롬프트 복사)을 완료해야 합니다.", false);
-                return;
-            }
-
-            const school = document.getElementById('cert-school').value.trim();
-            const grade = document.getElementById('cert-grade').value.trim();
-            const classNum = document.getElementById('cert-class').value.trim();
-            const name = document.getElementById('cert-name').value.trim();
-
-            if (!school || !grade || !classNum || !name) {
-                showToast("학교, 학년, 반, 이름을 모두 입력해주세요.", false);
-                return;
-            }
-
-            const canvas = document.getElementById('cert-canvas');
-            const ctx = canvas.getContext('2d');
-
-            // Background & Border
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, 800, 600);
-
-            ctx.lineWidth = 12;
-            ctx.strokeStyle = "#1e293b"; // Slate-800
-            ctx.strokeRect(20, 20, 760, 560);
-
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = "#d97706"; // Amber-600
-            ctx.strokeRect(32, 32, 736, 536);
-
-            // Title
-            ctx.fillStyle = "#0f172a";
-            ctx.font = "bold 34px 'Noto Sans KR', sans-serif";
-            ctx.textAlign = "center";
-            ctx.fillText("이 수 증 (CERTIFICATE)", 400, 100);
-
-            ctx.fillStyle = "#2563eb";
-            ctx.font = "bold 16px 'Noto Sans KR', sans-serif";
-            ctx.fillText("생성형 AI 올바른 사용 및 프롬프트 실습 과정", 400, 135);
-
-            // Line Separator
-            ctx.beginPath();
-            ctx.moveTo(100, 155);
-            ctx.lineTo(700, 155);
-            ctx.strokeStyle = "#e2e8f0";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-
-            // Personal Info
-            ctx.fillStyle = "#334155";
-            ctx.font = "bold 18px 'Noto Sans KR', sans-serif";
-            ctx.textAlign = "left";
-            ctx.fillText(`소  속 : ${school} ${grade}학년 ${classNum}반`, 120, 210);
-            ctx.fillText(`성  명 : ${name}`, 120, 245);
-
-            // Completion Text
-            ctx.font = "15px 'Noto Sans KR', sans-serif";
-            ctx.fillStyle = "#475569";
-            
-            const summaryText = [
-                "위 학생은 생성형 AI의 올바른 활용법과 윤리적 가이드라인을 이수하고,",
-                "다음 5가지 핵심 실습 과제를 성공적으로 완료하였으므로 이수증을 수여합니다."
-            ];
-            ctx.fillText(summaryText[0], 120, 295);
-            ctx.fillText(summaryText[1], 120, 320);
-
-            // Practice Summary Details Box (adjusted width to 480 to leave room for badge)
-            ctx.fillStyle = "#f8fafc";
-            ctx.fillRect(120, 345, 480, 140);
-            ctx.strokeStyle = "#cbd5e1";
-            ctx.lineWidth = 1;
-            ctx.strokeRect(120, 345, 480, 140);
-
-            ctx.fillStyle = "#1e293b";
-            ctx.font = "bold 13px 'Noto Sans KR', sans-serif";
-            ctx.fillText("【 주요 실습 내용 요약 】", 140, 370);
-
-            ctx.font = "12px 'Noto Sans KR', sans-serif";
-            ctx.fillStyle = "#334155";
-            ctx.fillText("1. AI 윤리 & 팩트체크 OX 퀴즈 완료 (100점 만점)", 140, 395);
-            ctx.fillText("2. [진로·진학] 희망 전공 심화 탐구 및 도서 추천 프롬프트 실습", 140, 417);
-            ctx.fillText("3. [교과학습] 교과 개념 비유 설명 및 점검 퀴즈 프롬프트 실습", 140, 439);
-            ctx.fillText("4. [교과외 활동] 동아리 프로젝트 및 홍보 매체 구상 프롬프트 실습", 140, 461);
-            ctx.fillText("5. [AI 에이전트] 나만의 학교생활 맞춤형 에이전트 프롬프트 설계 완료", 140, 483);
-
-            // === [금색 인증 메달 / Certificate Badge 추가] ===
-            const badgeX = 670;
-            const badgeY = 415;
-            const badgeRadius = 50;
-
-            // 1. Ribbon tails (리본 꼬리 장식)
-            ctx.fillStyle = "#92400e";
-            ctx.beginPath();
-            ctx.moveTo(badgeX - 22, badgeY + 25);
-            ctx.lineTo(badgeX - 38, badgeY + 72);
-            ctx.lineTo(badgeX - 12, badgeY + 56);
-            ctx.lineTo(badgeX + 12, badgeY + 56);
-            ctx.lineTo(badgeX + 38, badgeY + 72);
-            ctx.lineTo(badgeX + 22, badgeY + 25);
-            ctx.closePath();
-            ctx.fill();
-
-            // 2. Outer gold circle (외곽 금색 그라데이션 원)
-            const goldGrad = ctx.createRadialGradient(badgeX - 12, badgeY - 12, 5, badgeX, badgeY, badgeRadius);
-            goldGrad.addColorStop(0, "#fef08a"); // 밝은 골드
-            goldGrad.addColorStop(0.4, "#f59e0b"); // 리치 골드
-            goldGrad.addColorStop(1, "#b45309"); // 딥 골드
-
-            ctx.fillStyle = goldGrad;
-            ctx.beginPath();
-            ctx.arc(badgeX, badgeY, badgeRadius, 0, Math.PI * 2);
-            ctx.fill();
-
-            // 3. Outer ring border
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = "#fffbeb";
-            ctx.beginPath();
-            ctx.arc(badgeX, badgeY, badgeRadius - 6, 0, Math.PI * 2);
-            ctx.stroke();
-
-            // 4. Inner gold circle (내부 원)
-            ctx.fillStyle = "#d97706";
-            ctx.beginPath();
-            ctx.arc(badgeX, badgeY, badgeRadius - 13, 0, Math.PI * 2);
-            ctx.fill();
-
-            // 5. Badge Text ("OFFICIAL")
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "bold 10px 'Noto Sans KR', sans-serif";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("OFFICIAL", badgeX, badgeY - 12);
-            ctx.fillText("CERTIFIED", badgeX, badgeY + 20);
-
-            // 6. Star symbol in center
-            let rot = Math.PI / 2 * 3;
-            let spikes = 5;
-            let outerRadius = 13;
-            let innerRadius = 6;
-            let step = Math.PI / spikes;
-
-            ctx.beginPath();
-            ctx.moveTo(badgeX, badgeY - 3 - outerRadius);
-            for (let i = 0; i < spikes; i++) {
-                let x = badgeX + Math.cos(rot) * outerRadius;
-                let y = badgeY - 3 + Math.sin(rot) * outerRadius;
-                ctx.lineTo(x, y);
-                rot += step;
-
-                x = badgeX + Math.cos(rot) * innerRadius;
-                y = badgeY - 3 + Math.sin(rot) * innerRadius;
-                ctx.lineTo(x, y);
-                rot += step;
-            }
-            ctx.lineTo(badgeX, badgeY - 3 - outerRadius);
-            ctx.closePath();
-            ctx.fillStyle = "#fef08a";
-            ctx.fill();
-            ctx.strokeStyle = "#92400e";
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            ctx.textBaseline = "alphabetic"; // 텍스트 기준선 초기화
-
-            // Date & Authority
-            const today = new Date();
-            const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
-
-            ctx.textAlign = "center";
-            ctx.font = "14px 'Noto Sans KR', sans-serif";
-            ctx.fillStyle = "#64748b";
-            ctx.fillText(dateStr, 400, 520);
-
-            ctx.font = "bold 18px 'Noto Sans KR', sans-serif";
-            ctx.fillStyle = "#0f172a";
-            ctx.fillText(school, 400, 550, 600);
-
-            // Show Result Section
-            document.getElementById('cert-result-area').classList.remove('hidden');
-            showToast("이수증이 성공적으로 발급되었습니다!");
-        }
-
-        function downloadCertificate() {
-            const canvas = document.getElementById('cert-canvas');
-            const link = document.createElement('a');
-            const name = document.getElementById('cert-name').value.trim() || "학생";
-            link.download = `AI_올바른사용_실습_이수증_${name}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
         }
     </script>
 </body>
